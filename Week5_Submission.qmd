@@ -1,0 +1,120 @@
+---
+title: "Week 5 Assignment: Data Storytelling with Shiny"
+author: "Your Name"
+date: today
+format: 
+  pdf:
+    geometry: margin=1in
+    fontsize: 11pt
+---
+
+# Part I: Shiny App Features
+
+## App Links
+
+**Deployed App URL**: [Your deployed app URL here]
+
+**Code Repository**: [Your GitHub repository URL here]
+
+## Feature List
+
+My Australian Wine Sales Forecasting Shiny app includes the following features:
+
+### Core Functionality
+- **Interactive Varietal Selection**: Multi-select checkbox interface for choosing wine varietals
+- **Flexible Date Range Controls**: User-defined training start and end dates with dropdown selectors
+- **Multiple Forecasting Models**: TSLM, ETS, and ARIMA with toggle controls
+- **User-Defined Forecast Horizon**: Adjustable forecast period (1-24 months)
+- **Responsive UI**: Clean, intuitive interface with sensible defaults
+
+### Tab 1: Visualization
+- Faceted time series plots with free y-scales for accurate comparison across varietals
+- Visual training/validation split indicator (red dashed line)
+- Summary statistics table showing observations, mean, SD, min, and max by varietal
+- Professional styling with clear labels and titles
+
+### Tab 2: Model Building
+- **Model Specifications Table**: Displays ETS component form (e.g., ETS(M,A,M)) and ARIMA orders (p,d,q)(P,D,Q)[m]
+- **Training Accuracy Metrics**: RMSE, MAE, and MAPE for each model on training data
+- **Validation Accuracy Metrics**: Same metrics calculated on holdout validation set
+- **Combined Accuracy Comparison**: Side-by-side training vs validation metrics with spanners for easy comparison
+
+### Tab 3: Forecast
+- Comparative forecast visualization in faceted grid (Varietal × Model)
+- 80% and 95% prediction intervals clearly displayed
+- Training data shown alongside forecasts for context
+- Clear legend distinguishing models and confidence levels
+- Forecast details table showing point estimates
+
+### Additional Features
+- **About Tab**: Documentation of app features, dataset, and model descriptions
+- **Error Handling**: Graceful handling of missing validation data
+- **Data Quality**: Automatic handling of non-numeric values and missing data
+- **Performance**: Fast model fitting and responsive updates
+
+### Technical Excellence
+- No hard-coded file paths (project-relative paths only)
+- Handles multiple varietals simultaneously without errors
+- Clean separation of UI and server logic
+- Proper reactive programming patterns
+- Professional data visualization with ggplot2 and gt tables
+
+---
+
+# Part II: Data Story
+
+## Story Focus
+
+[Your compelling insight here - e.g., "Sparkling wine shows extreme seasonal volatility with December sales spiking 3x the annual average, and the ETS model with multiplicative seasonality captures this pattern far better than linear models."]
+
+## Evidence and Analysis
+
+### Figure 1: [Descriptive Title]
+
+![Screenshot from your app](path/to/screenshot1.png)
+
+**Reproduction Steps**:
+- App URL: [Your URL]
+- Settings:
+  - Varietals: [List selected varietals]
+  - Training Start: [Date]
+  - Training End: [Date]
+  - Forecast Horizon: [Number] months
+  - Models: [Which models enabled]
+  - Tab: [Which tab]
+
+**Observation**: [What this figure shows and why it matters]
+
+### Figure 2: [Descriptive Title]
+
+![Screenshot from your app](path/to/screenshot2.png)
+
+**Reproduction Steps**:
+- App URL: [Your URL]
+- Settings: [Specific settings to reproduce this view]
+
+**Observation**: [What this figure shows]
+
+### Model Performance Comparison
+
+[Include a table or screenshot showing validation metrics]
+
+**Key Finding**: [Explain which model performed best and why]
+
+## Conclusion
+
+[Summarize your data story in 2-3 sentences. Explain why your finding matters for wine producers, distributors, or retailers.]
+
+---
+
+## Reproducibility Notes
+
+- All analysis can be reproduced using the settings specified above
+- Code available at: [GitHub URL]
+- R version: [Your R version]
+- Key packages: shiny (1.11.1), fpp3 (1.0.2), tidyverse (2.0.0), gt (1.1.0), urca (1.3-4)
+
+## Acknowledgments
+
+[If you used any AI tools or adapted code from external sources, acknowledge them here]
+

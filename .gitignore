@@ -1,0 +1,28 @@
+# R files
+.Rhistory
+.RData
+.Rproj.user
+*.Rproj
+
+# Shiny
+rsconnect/
+
+# macOS
+.DS_Store
+
+# Quarto
+/.quarto/
+_site/
+_book/
+_freeze/
+*.knit.md
+
+# HTML output
+*.html
+!index.html
+
+# Temporary files
+*~
+*.swp
+*.swo
+
