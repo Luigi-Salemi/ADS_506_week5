@@ -39,11 +39,13 @@ ui <- fluidPage(
       # Varietal selection
       checkboxGroupInput(
         "varietals",
-        "Select Varietals:",
+        "Select Varietals (max 3 recommended):",
         choices = varietals,
-        selected = c("Red", "Dry white", "sparkling")
+        selected = c("Red", "Dry white")
       ),
-      
+
+      helpText("Note: Model fitting may take 5-10 seconds per varietal"),
+
       hr(),
       
       # Date range inputs
@@ -200,6 +202,7 @@ server <- function(input, output, session) {
   })
 
   # Reactive: Fitted models
+  # Add progress indicator and caching
   fitted_models <- reactive({
     req(train_data())
 
@@ -219,10 +222,19 @@ server <- function(input, output, session) {
     # Require at least one model
     req(length(model_list) > 0)
 
-    # Fit models
-    train_data() %>%
-      model(!!!model_list)
-  })
+    # Show progress
+    withProgress(message = 'Fitting models...', value = 0, {
+      incProgress(0.3, detail = "Preparing data")
+
+      # Fit models
+      result <- train_data() %>%
+        model(!!!model_list)
+
+      incProgress(0.7, detail = "Finalizing")
+      result
+    })
+  }) %>% bindCache(input$varietals, input$train_start, input$train_end,
+                    input$fit_tslm, input$fit_ets, input$fit_arima)
 
   # Reactive: Forecasts
   forecasts <- reactive({
@@ -230,7 +242,8 @@ server <- function(input, output, session) {
 
     fitted_models() %>%
       forecast(h = input$forecast_horizon)
-  })
+  }) %>% bindCache(input$varietals, input$train_start, input$train_end,
+                    input$forecast_horizon, input$fit_tslm, input$fit_ets, input$fit_arima)
 
   # Output: Time series plot
   output$ts_plot <- renderPlot({
