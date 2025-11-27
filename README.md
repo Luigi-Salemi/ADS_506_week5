@@ -1,34 +1,32 @@
 # Australian Wine Sales Forecasting
 
-ADS 506 Week 5 Assignment - Interactive Shiny App
+Interactive Shiny app for forecasting Australian wine sales across different varietals.
 
 ## About
 
-This Shiny app analyzes Australian wine sales data (1980-1994) and creates forecasts using three different models:
+This app analyzes Australian wine sales data (1980-1994) using three forecasting models:
 - TSLM (Time Series Linear Model)
 - ETS (Error-Trend-Seasonal)
 - ARIMA (AutoRegressive Integrated Moving Average)
 
-## Files
+## Live App
 
-- `app.R` - Main Shiny application
-- `AustralianWines.csv` - Dataset
-- `mockup.qmd` - Initial analysis document
+<https://connect.posit.cloud/luigi-salemi-usd/content/019ab93b-d522-6571-32d0-7cf8442ae99c>
 
-## How to Run
+## How to Run Locally
 
 ```r
 # Install packages
 install.packages(c("shiny", "tidyverse", "fpp3", "gt", "urca", "lubridate"))
 
 # Run app
-shiny::runApp("app.R")
+shiny::runApp()
 ```
 
 ## Features
 
-- Select wine varietals to analyze
-- Choose training period dates
-- Compare multiple forecasting models
-- View accuracy metrics (RMSE, MAE, MAPE)
-- See forecast plots with prediction intervals
+- Interactive varietal selection
+- Flexible training period controls
+- Comparative model forecasts with prediction intervals
+- Accuracy metrics (RMSE, MAE, MAPE)
+- Performance optimization with caching
